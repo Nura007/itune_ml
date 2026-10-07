@@ -1,0 +1,71 @@
+{
+  "data_kind": "real_api",
+  "created_at_utc": "2026-10-07T20:54:01.973766+00:00",
+  "python_version": "3.11.17",
+  "sklearn_version": "1.6.1",
+  "git_commit": "ae4e81218cf5039db10ee6e9c380423f7008807e",
+  "dataset_sha256": "5c4169bb4bf7cf5f8ae8c14110dc8aef6948a645657b869ff77c21c4631bc8fd",
+  "test_size": 0.2,
+  "random_state": 42,
+  "stratify": "high_rated",
+  "config": {
+    "target_threshold": 4.5,
+    "min_rating_count": 50,
+    "min_samples": 1500,
+    "target_samples": 2000,
+    "test_size": 0.2,
+    "random_state": 42,
+    "cv_folds": 5,
+    "country": "us",
+    "currency": "USD",
+    "request_limit": 200,
+    "request_pause_seconds": 3.2,
+    "timeout_seconds": 40,
+    "retries": 4,
+    "numeric_features": [
+      "price_usd",
+      "size_mb",
+      "language_count",
+      "release_year",
+      "update_recency_days"
+    ],
+    "categorical_features": [
+      "primary_genre",
+      "content_advisory_rating"
+    ],
+    "pilot_terms": [
+      "fitness",
+      "education",
+      "puzzle game"
+    ]
+  },
+  "train_n": 1623,
+  "test_n": 406,
+  "train_class_counts": {
+    "1": 1321,
+    "0": 302
+  },
+  "test_class_counts": {
+    "1": 330,
+    "0": 76
+  },
+  "source_response_checksums": {
+    "0c5aefcdd57f0f2fdda1.response.json": "66723c211456c4a71a63bd8daa12637ea2e16fd0e8900c8d1b2e5e4280055fd6",
+    "0d29f6974078f9c1652a.response.json": "1e80f7283f7822c7317ae22faea5629f34cb686caf5e5d9d6de4fd4f2d43e357",
+    "11ce423ff3f8578513dc.response.json": "11be54760a8d63f278dfe536ff338ff31a9f0e85d32ac4ca300d674d37b4d177",
+    "148c4c9893cee3af3e9e.response.json": "349420f6037f6a820512cf335048af8495b2785b5b709b2c9eafc3d1ec840efe",
+    "1907a72af09e922cc6cc.response.json": "3133d68b92e45f86e7f257ec2701d7076234246885d059662a77cbc970f7196d",
+    "23aeb4966884a211d932.response.json": "aba23d5ec13aa2171598760b964c28aab8928a74c9b404a8e1a922c5ac0e50e2",
+    "4befde97afdbc38b791b.response.json": "a65e28f3fc1be8be545b8b93d0d9eba343d5695dc426c84c2bb9ea086921b513",
+    "4c76f397acb134261aba.response.json": "995f8ffa27c4d18cdc24660a34260edbf10c0d738a9617a90784dad07441d985",
+    "4e98ff21c501fd879497.response.json": "f5b6a69d9eb66373247cd5b766ff53191ed9d4dcd6902588776e277e3faabe2d",
+    "4f62dba1c9256c369a7d.response.json": "a810f1393e308849113bc6477c5adc5bfa6b87a68a10eeab6cac26b4e748e697",
+    "51b11bdb1956ef99617c.response.json": "7357c270b9e8e5ead7b36326321d3686c469967417411c34972b15266293a715",
+    "5b641f08f2d4cf023c61.response.json": "a00dfa28d972ec843e0d55b75a5e2254b09f3344c5530d0f1ae5d6926f62b80e",
+    "7c1aef4b724d90286d2a.response.json": "065dfc091bca5b9d4e009cd58a6296dafb07fa0c06a2e94db1c7a0bedf8dd14b",
+    "c851a28dc9a66d6d4e51.response.json": "97cbb300cc86b14a727ba407bb291cb6e3b951d13ebe5fa3af31a2dfa55e9686",
+    "cd0a005a4391e10f9980.response.json": "422590521baf1a67a3b21a25bb641750eaa411724c991714a64165ff0a1314ad",
+    "cfae66513eea315c42ea.response.json": "c0031c86cabd2bcf72f1e887b26bbde7612e4f9f60fb66959df3068958d1d937",
+    "d9928afc70bf3bfe7ecd.response.json": "948d1dd97e9ca2fc5a3d38fedd5ed5ed8276131b3bbffd169776ffee1e5f35c2"
+  }
+}
