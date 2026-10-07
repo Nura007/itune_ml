@@ -1,6 +1,6 @@
 {
-  "stage": "pilot",
+  "stage": "full",
   "requested_on": "2026-10-08",
-  "reason": "Inspect fields, missingness and duplicate rates before main collection",
+  "reason": "Pilot verified: 142 raw rows, 141 eligible, both classes, no missing model features; proceed with prespecified protocol",
   "publish_raw_data": false
 }
