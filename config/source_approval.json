@@ -1,0 +1,8 @@
+{
+  "status": "approved",
+  "approved_by": "Course instructor, as reported by repository owner in chat",
+  "approved_on": "2026-10-08",
+  "scope": "Course research using the documented iTunes Search API with rate limiting; do not publish raw data.",
+  "evidence": "Owner relayed instructor's response: about 20 calls/minute; use pauses and keyword searches; deduplicate trackId; keep raw data unpublished; document promotional-content context; exclude rating fields from features.",
+  "limitations": "Course approval is not an assertion that robots.txt permits /search or a grant of rights by Apple."
+}

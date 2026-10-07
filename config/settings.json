@@ -1,0 +1,31 @@
+{
+  "target_threshold": 4.5,
+  "min_rating_count": 50,
+  "min_samples": 1500,
+  "target_samples": 2000,
+  "test_size": 0.2,
+  "random_state": 42,
+  "cv_folds": 5,
+  "country": "us",
+  "currency": "USD",
+  "request_limit": 200,
+  "request_pause_seconds": 3.2,
+  "timeout_seconds": 40,
+  "retries": 4,
+  "numeric_features": [
+    "price_usd",
+    "size_mb",
+    "language_count",
+    "release_year",
+    "update_recency_days"
+  ],
+  "categorical_features": [
+    "primary_genre",
+    "content_advisory_rating"
+  ],
+  "pilot_terms": [
+    "fitness",
+    "education",
+    "puzzle game"
+  ]
+}
