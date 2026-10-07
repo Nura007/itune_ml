@@ -26,9 +26,12 @@ def report(audit, cv, test_metrics, cases, selected, provenance, output_dir):
     best = test_metrics.set_index("model").loc[selected]
     baseline = test_metrics.set_index("model").loc["Dummy"]
     difference = float(best.f1 - baseline.f1)
-    statement = (f"The CV-selected model ({selected}) has holdout F1 {best.f1:.3f}, "
-                 f"compared with Dummy {baseline.f1:.3f} (difference {difference:+.3f}). "
-                 "This comparison is descriptive; no significance claim is made.")
+    matrix = json.loads((out / "reports/confusion_matrices.json").read_text(encoding="utf-8"))[selected]["matrix"]
+    tn, fp = matrix[0]
+    statement = (f"{selected}: holdout F1 {best.f1:.3f} vs Dummy {baseline.f1:.3f} "
+                 f"(gain {difference:+.3f}); ROC-AUC {best.roc_auc:.3f}. "
+                 f"It detected {tn}/{tn + fp} lower-rated apps. "
+                 "The F1 gain is descriptive; no statistical significance is claimed.")
     if difference <= 0:
         statement += " The metadata models do not demonstrate an improvement over the majority baseline on F1."
     status = provenance["data_kind"]
@@ -150,6 +153,11 @@ def presentation(audit, cv, metrics, cases, selected, statement, output_dir, dat
     prs = Presentation()
     prs.slide_width, prs.slide_height = Inches(13.333), Inches(7.5)
     navy, teal, orange = RGBColor.from_string("102A43"), RGBColor.from_string("167D8D"), RGBColor.from_string("E9A23B")
+    main_audit_path = out / "reports/main_audit.json"
+    actual_requests = (json.loads(main_audit_path.read_text(encoding="utf-8")).get("queries_completed")
+                       if main_audit_path.exists() else None)
+    sampling_line = (f"{actual_requests} requests used; 132 keywords planned" if actual_requests
+                     else "132 keywords planned; up to 200 results/query")
 
     def box(slide, text, x, y, w, h, size=24, bold=False, color=navy):
         shape = slide.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(h))
@@ -185,10 +193,10 @@ def presentation(audit, cv, metrics, cases, selected, statement, output_dir, dat
               "0:50–1:50. Describe instructor conditions and the robots.txt discrepancy. "
               "Do not say robots.txt allows collection. Explain keyword sampling and overlap. "
               f"Sources: {APPLE} and {ROBOTS}. Raw data stays private.")
-    box(s, "Apple iTunes Search API · US storefront\n132 prespecified keywords; up to 200 results/query\n"
+    box(s, f"Apple iTunes Search API · US storefront\n{sampling_line}\n"
         "Pause ≥3.2 seconds; cache raw responses privately\nLatest observation per trackId; at least 50 ratings",
         .7, 1.5, 12, 3.8, 25)
-    box(s, "Promotional-content context • Raw JSON/descriptions excluded from publication", .7, 5.65, 12, .8, 21, True, teal)
+    box(s, "robots.txt disallows /search* • Raw JSON/descriptions stay private", .7, 5.65, 12, .8, 21, True, teal)
 
     s = slide("Cleaning and class balance",
               "1:50–2:50. Explain minimum sample size, invalid values, duplicates and class imbalance. "
@@ -219,8 +227,8 @@ def presentation(audit, cv, metrics, cases, selected, statement, output_dir, dat
               + statement)
     columns = ["Model", "CV F1 ± SD", "Test F1", "AUC", "Precision", "Recall"]
     table = s.shapes.add_table(5, 6, Inches(.6), Inches(1.6), Inches(12.1), Inches(2.8)).table
-    table.columns[0].width = Inches(2.15)
-    table.columns[1].width = Inches(2.7)
+    for column, width in zip(table.columns, [2.3, 2.7, 1.75, 1.65, 1.85, 1.85]):
+        column.width = Inches(width)
     for j, label in enumerate(columns):
         table.cell(0, j).text = label
     for i, row in enumerate(cv.itertuples(index=False), 1):
@@ -247,8 +255,9 @@ def presentation(audit, cv, metrics, cases, selected, statement, output_dir, dat
               "6:50–7:50. These are actual test errors with identifying raw fields removed. "
               "Cases nearest the 4.5 boundary are selected deterministically within FP and FN. "
               "Discuss plausible limitations, not unproven causes.")
+    shown_cases = pd.concat([cases.loc[cases.error_type.eq(kind)].head(1) for kind in ["FP", "FN"]])
     lines = [f"{r.case} · {r.error_type} · true {r.actual_class}, predicted {r.predicted_class}\n{r.observation}"
-             for r in cases.head(3).itertuples(index=False)]
+             for r in shown_cases.itertuples(index=False)]
     box(s, "\n\n".join(lines) if lines else "No errors for the selected model in this holdout.",
         .7, 1.45, 12, 4.9, 22)
     box(s, "Full private audit is generated locally; public cases omit IDs, names and exact ratings.",

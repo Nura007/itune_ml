@@ -35,3 +35,8 @@ References:
 - https://itunes.apple.com/robots.txt
 - https://scikit-learn.org/stable/modules/cross_validation.html
 - https://scikit-learn.org/stable/common_pitfalls.html
+
+The completed experiment used 17 requests total (3 pilot plus 14 main) and yielded 2,029 eligible apps.
+Its source revision is preserved in outputs/reports/provenance.json. A later collector maintenance fix
+also adds a pause before each new Collector instance and honors long numeric Retry-After values.
+It does not alter the already recorded dataset or model results; report-only updates use the frozen aggregates.

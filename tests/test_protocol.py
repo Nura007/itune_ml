@@ -88,7 +88,9 @@ def test_approval_blocks_network(tmp_path):
         check_approval(approval)
 
 
-def test_collector_cache_and_metadata(tmp_path, config):
+def test_collector_cache_and_metadata(tmp_path, config, monkeypatch):
+    pauses = []
+    monkeypatch.setattr("appstore_ml.collect.time.sleep", pauses.append)
     class Response:
         status_code = 200
         headers = {}
@@ -109,6 +111,7 @@ def test_collector_cache_and_metadata(tmp_path, config):
     collector.fetch("fixture", 50)
     collector.fetch("fixture", 50)
     assert session.calls == 1
+    assert pauses == [3.2]
     response = next(tmp_path.glob("*.response.json"))
     meta = json.loads(next(tmp_path.glob("*.meta.json")).read_text())
     assert meta["sha256"] == sha256(response)

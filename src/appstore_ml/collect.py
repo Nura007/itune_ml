@@ -45,15 +45,15 @@ class Collector:
             return json.loads(dest.read_text(encoding="utf-8"))
         pause = max(3.2, self.config["request_pause_seconds"])
         for attempt in range(self.config["retries"]):
-            if self.last_call is not None:
-                time.sleep(max(0, pause - (time.monotonic() - self.last_call)))
+            delay = pause if self.last_call is None else max(0, pause - (time.monotonic() - self.last_call))
+            time.sleep(delay)  # Also separate adjacent pilot/main Collector instances.
             self.last_call = time.monotonic()
             try:
                 response = self.session.get(ENDPOINT, params=params, timeout=self.config["timeout_seconds"])
                 if response.status_code == 429 or response.status_code >= 500:
                     retry_after = response.headers.get("Retry-After", "")
                     wait = float(retry_after) if retry_after.isdigit() else pause * 2 ** (attempt + 1)
-                    time.sleep(min(max(wait, pause), 120))
+                    time.sleep(max(wait, pause))
                     response.raise_for_status()
                 response.raise_for_status()
                 payload = response.json()
