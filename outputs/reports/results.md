@@ -31,7 +31,7 @@ See cv_metrics.csv for mean and SD of every metric and cv_folds_metrics.csv for 
 | Decision Tree | 406 | 0.888 | 0.678 | 0.842 | 0.939 | 0.588 |
 | KNN | 406 | 0.896 | 0.639 | 0.833 | 0.970 | 0.564 |
 | SVM | 406 | 0.901 | 0.620 | 0.826 | 0.991 | 0.542 |
-The CV-selected model (SVM) has holdout F1 0.901, compared with Dummy 0.897 (difference +0.004). This comparison is descriptive; no significance claim is made.
+SVM: holdout F1 0.901 vs Dummy 0.897 (gain +0.004); ROC-AUC 0.620. It detected 7/76 lower-rated apps. The F1 gain is descriptive; no statistical significance is claimed.
 
 A majority predictor can have high positive-class F1 under imbalance. Inspect ROC-AUC, balanced
 accuracy and both rows of the confusion matrix. SVM ROC-AUC uses decision scores, not probabilities.
