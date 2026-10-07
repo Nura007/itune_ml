@@ -1,0 +1,6 @@
+{
+  "stage": "pilot",
+  "requested_on": "2026-10-08",
+  "reason": "Inspect fields, missingness and duplicate rates before main collection",
+  "publish_raw_data": false
+}
