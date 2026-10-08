@@ -1,0 +1,86 @@
+name: Approved Midterm experiment
+on:
+  push:
+    paths:
+      - "config/collection_run.json"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: appstore-research
+  cancel-in-progress: false
+jobs:
+  research:
+    if: github.repository == 'Nura007/itune_ml'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: python -m pip install -e ".[dev]"
+      - name: Verify protocol before network collection
+        run: pytest
+      - name: Approved pilot or full experiment
+        run: python scripts/cloud_run.py
+      - name: Execute public aggregate notebook
+        if: hashFiles('outputs/midterm.pptx') != ''
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import nbformat
+          from nbclient import NotebookClient
+          p = Path("notebooks/midterm.ipynb")
+          nb = nbformat.read(p, as_version=4)
+          NotebookClient(nb, timeout=180, kernel_name="python3", resources={"metadata": {"path": "."}}).execute()
+          nbformat.write(nb, p)
+          PY
+      - name: Render slides for review
+        if: hashFiles('outputs/midterm.pptx') != ''
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libreoffice-impress poppler-utils
+          mkdir -p work/slides
+          libreoffice -env:UserInstallation=file:///tmp/appstore-lo --headless --convert-to pdf --outdir outputs outputs/midterm.pptx
+          pdftoppm -scale-to 1000 -png outputs/midterm.pdf work/slides/slide
+          python - <<'PY'
+          from PIL import Image, ImageOps, ImageDraw
+          from pathlib import Path
+          files = sorted(Path("work/slides").glob("*.png"))
+          assert len(files) == 9, f"Expected 9 rendered slides, got {len(files)}"
+          contact = Image.new("RGB", (1500, 3 * 310), "#dddddd")
+          for i, p in enumerate(files):
+              im = Image.open(p).convert("RGB")
+              im.thumbnail((490, 280))
+              x, y = (i % 3) * 500 + 5, (i // 3) * 310 + 5
+              contact.paste(im, (x, y))
+              ImageDraw.Draw(contact).text((x, y + 282), f"Slide {i+1}", fill="black")
+          contact.save("outputs/slides_contact.png")
+          PY
+      - name: Publish only aggregate reports and presentation to this branch
+        if: always()
+        run: |
+          python scripts/check_publication.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --cached --quiet; then
+            git commit -m "Record Midterm aggregate research artifacts"
+            git push origin HEAD:"${{ github.ref_name }}"
+          fi
+      - name: Downloadable public deliverables (no raw data)
+        if: success() && hashFiles('outputs/midterm.pptx') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: midterm-public-results
+          path: |
+            outputs/reports/
+            outputs/figures/
+            outputs/midterm.pptx
+            outputs/midterm.pdf
+            outputs/slides_contact.png
+            notebooks/midterm.ipynb
+          retention-days: 90

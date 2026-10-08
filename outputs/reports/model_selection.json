@@ -1,0 +1,14 @@
+{
+  "selected_model": "SVM",
+  "criterion": "maximum mean training CV F1 for class 1",
+  "tie_break": "model name ascending",
+  "cv_std": "sample standard deviation, ddof=1",
+  "hyperparameters": {
+    "Dummy": "DummyClassifier(strategy='most_frequent')",
+    "Decision Tree": "DecisionTreeClassifier(max_depth=8, min_samples_leaf=10, random_state=42)",
+    "KNN": "KNeighborsClassifier(n_neighbors=15, weights='distance')",
+    "SVM": "SVC(random_state=42)"
+  },
+  "test_used_for_selection": false,
+  "hyperparameter_tuning": "none; fixed prespecified settings"
+}

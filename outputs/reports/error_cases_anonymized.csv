@@ -1,0 +1,7 @@
+case,error_type,actual_class,predicted_class,observation,interpretation
+Case 1,FP,0,1,True rating is within 0.1 of the 4.5 boundary,Descriptive association; no causal explanation is established.
+Case 2,FP,0,1,True rating is within 0.1 of the 4.5 boundary,Descriptive association; no causal explanation is established.
+Case 3,FP,0,1,True rating is within 0.1 of the 4.5 boundary,Descriptive association; no causal explanation is established.
+Case 4,FN,1,0,Metadata alone does not explain the observed rating,Descriptive association; no causal explanation is established.
+Case 5,FN,1,0,Metadata alone does not explain the observed rating,Descriptive association; no causal explanation is established.
+Case 6,FN,1,0,Metadata alone does not explain the observed rating,Descriptive association; no causal explanation is established.

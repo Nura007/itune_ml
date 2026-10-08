@@ -1,0 +1,133 @@
+# 132 prespecified, interleaved keywords. US storefront; nonrandom search sample.
+fitness
+education
+puzzle game
+photo editor
+music
+finance
+travel
+productivity
+shopping
+weather
+social networking
+utilities
+workout
+language learning
+strategy game
+video editor
+podcast
+budget
+maps
+calendar
+grocery
+news
+messaging
+calculator
+yoga
+math practice
+racing game
+camera
+radio
+expense tracker
+navigation
+notes
+coupons
+sports
+video chat
+QR scanner
+meditation
+flashcards
+card game
+collage
+piano
+banking
+hotel booking
+to do list
+fashion
+football
+events
+remote control
+running
+science
+word game
+animation
+guitar tuner
+investment
+flight tracker
+document scanner
+marketplace
+basketball
+community
+browser
+walking
+coding lessons
+board game
+drawing
+metronome
+currency converter
+camping
+email
+price comparison
+tennis
+dating
+file manager
+calorie counter
+vocabulary
+trivia game
+graphic design
+audio recorder
+invoice
+public transport
+cloud storage
+food delivery
+golf
+family organizer
+unit converter
+sleep tracker
+history
+arcade game
+image converter
+sheet music
+savings
+trip planner
+password manager
+restaurant
+fishing
+pet care
+business
+cycling
+geography
+simulation game
+photo storage
+drum machine
+tax calculator
+translation
+focus timer
+recipe
+surfing
+parenting
+real estate
+pilates
+exam preparation
+adventure game
+filters
+audiobook
+receipt scanner
+parking
+voice notes
+meal planner
+skiing
+wedding planner
+job search
+step counter
+study planner
+role playing game
+stop motion
+music production
+personal accounting
+hiking
+mind map
+home inventory
+cricket
+neighborhood
+time tracker

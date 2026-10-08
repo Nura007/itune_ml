@@ -1,0 +1,6 @@
+{
+  "stage": "report",
+  "requested_on": "2026-10-08",
+  "reason": "Fix presentation table bounds and show both error types using the frozen 2029-app experiment; no recollection or retraining",
+  "publish_raw_data": false
+}

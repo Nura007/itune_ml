@@ -1,0 +1,74 @@
+{
+  "Dummy": {
+    "labels": [
+      0,
+      1
+    ],
+    "rows": "true",
+    "columns": "predicted",
+    "matrix": [
+      [
+        0,
+        76
+      ],
+      [
+        0,
+        330
+      ]
+    ]
+  },
+  "Decision Tree": {
+    "labels": [
+      0,
+      1
+    ],
+    "rows": "true",
+    "columns": "predicted",
+    "matrix": [
+      [
+        18,
+        58
+      ],
+      [
+        20,
+        310
+      ]
+    ]
+  },
+  "KNN": {
+    "labels": [
+      0,
+      1
+    ],
+    "rows": "true",
+    "columns": "predicted",
+    "matrix": [
+      [
+        12,
+        64
+      ],
+      [
+        10,
+        320
+      ]
+    ]
+  },
+  "SVM": {
+    "labels": [
+      0,
+      1
+    ],
+    "rows": "true",
+    "columns": "predicted",
+    "matrix": [
+      [
+        7,
+        69
+      ],
+      [
+        3,
+        327
+      ]
+    ]
+  }
+}
