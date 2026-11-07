@@ -9,6 +9,8 @@ from reportlab.lib.styles import ParagraphStyle
 from reportlab.pdfgen import canvas
 from reportlab.platypus import Paragraph
 
+from .common import ROOT
+
 INK = "#123047"
 BLUE = "#176B83"
 GOLD = "#B56624"
@@ -18,6 +20,9 @@ W, H = 960, 540
 
 def build_slides(public_dir):
     out = Path(public_dir)
+    team = json.loads((ROOT / "config/team.json").read_text(encoding="utf-8"))
+    speakers = {number: student["name"] for student in team["students"] for number in student["slides"]}
+    names = "; ".join(student["name"] for student in team["students"])
     reports = out / "reports"
     read = lambda name: json.loads((reports / name).read_text(encoding="utf-8"))
     provenance, selection = read("provenance.json"), read("model_selection.json")
@@ -33,11 +38,18 @@ def build_slides(public_dir):
     timings = [35, 45, 50, 50, 55, 50, 55, 45, 35]
     pdf = canvas.Canvas(str(out / "Endterm_Presentation.pdf"), pagesize=(W, H))
     pdf.setTitle("Endterm: App Store rating classification")
-    pdf.setAuthor("Project team; prepared with Codex assistance")
+    pdf.setAuthor(names + "; " + team["group"] + "; Codex assistance disclosed")
     notes = ["# Seven-minute speaker notes\n",
-             "Proposed roles A and B are rehearsal assignments, not a claim about actual contributions. "
-             "Replace them with the students' names. Total planned time: 420 seconds. "
-             "Both partners must understand all slides. Allow five additional minutes for questions.\n"]
+             f"Team: {names}. Group: {team['group']}.\n\n"
+             "These are assigned responsibilities and proposed speaking roles, not completed-work claims. "
+             "Total planned time: 420 seconds. Every student must understand all slides. "
+             "Allow five additional minutes for questions. The rubric describes two partners; "
+             "instructor acceptance of the supplied three-person team is unverified.\n",
+             "| Student | Assigned responsibility | Slides | Seconds |\n"
+             "| --- | --- | --- | --- |\n" + "\n".join(
+                 f"| {student['name']} | {student['responsibility']} | "
+                 f"{student['slides'][0]}-{student['slides'][-1]} | {student['speaking_seconds']} |"
+                 for student in team["students"]) + "\n"]
 
     def text(value, x, y, width, height, size=21, color=INK, bold=False):
         style = ParagraphStyle("slide", fontName="Helvetica-Bold" if bold else "Helvetica",
@@ -48,7 +60,7 @@ def build_slides(public_dir):
             raise ValueError(f"Slide text overflows: {value[:80]} ({used}>{height})")
         paragraph.drawOn(pdf, x, H-y-used)
 
-    def start(number, title, speaker):
+    def start(number, title):
         pdf.setFillColor(HexColor("#F7F9FA"))
         pdf.rect(0, 0, W, H, fill=1, stroke=0)
         pdf.setFillColor(HexColor(BLUE))
@@ -57,11 +69,11 @@ def build_slides(public_dir):
         pdf.setStrokeColor(HexColor("#D9E2E8"))
         pdf.line(45, 37, 915, 37)
         text(f"Separate November 2026 experiment  /  {number}/9", 45, 511, 700, 20, 11, GRAY)
-        text(f"{speaker}  {timings[number-1]}s", 800, 511, 120, 20, 11, GRAY)
+        text(f"{speakers[number]}  {timings[number-1]}s", 690, 511, 230, 20, 11, GRAY)
 
-    def note(number, title, speaker, words):
+    def note(number, title, words):
         elapsed = sum(timings[:number-1])
-        notes.append(f"## {number}. {title}\n\nSpeaker {speaker}; {timings[number-1]} seconds; "
+        notes.append(f"## {number}. {title}\n\nSpeaker: {speakers[number]}; {timings[number-1]} seconds; "
                      f"{elapsed//60}:{elapsed%60:02d}-{(elapsed+timings[number-1])//60}:"
                      f"{(elapsed+timings[number-1])%60:02d}\n\n{words}\n")
         pdf.showPage()
@@ -70,20 +82,21 @@ def build_slides(public_dir):
         pdf.drawImage(str(out / "figures" / name), x, H-y-height,
                       width=width, height=height, preserveAspectRatio=True, anchor="c", mask="auto")
 
-    start(1, "Can app metadata identify highly rated apps?", "A")
+    start(1, "Can app metadata identify highly rated apps?")
     text("ENDTERM  /  MACHINE LEARNING ALGORITHMS", 48, 137, 850, 35, 15, BLUE, True)
     text("Seven inputs. Eight models.<br/>One frozen test set in the new experiment.",
          48, 192, 840, 135, 34, bold=True)
     text(f"{escape(selected)} selected by training CV. Test F1 {chosen.f1:.3f}; "
          f"class-0 recall {chosen.specificity:.1%}.", 48, 365, 850, 75, 23, BLUE)
-    note(1, "Question and main result", "A",
+    text(f"{escape(names)}<br/>Group {escape(team['group'])}", 48, 439, 850, 48, 16, GRAY)
+    note(1, "Question and main result",
          f"Our question is whether seven metadata attributes can identify highly rated existing US App Store apps. "
          f"Highly rated means at least 4.5 stars, and every app has at least 50 ratings. "
          f"We compared eight methods. Training cross-validation selected {selected}. "
          f"Its test F1 was {chosen.f1:.3f}, but class-zero recall was only {chosen.specificity:.1%}. "
          "That second number matters because the positive class dominates this sample.")
 
-    start(2, "Continuity is the unresolved requirement", "A")
+    start(2, "Continuity is the unresolved requirement")
     text("October Midterm", 48, 145, 380, 40, 24, BLUE, True)
     text("2,029 apps<br/>Original private snapshot and split were lost.<br/>Public aggregates survive.",
          48, 205, 390, 180, 23)
@@ -92,7 +105,7 @@ def build_slides(public_dir):
          f"{provenance['test_n']:,} test<br/>Raw data and split now retained privately.",
          510, 205, 400, 180, 23)
     text("New snapshot: no claim of improvement on the original holdout", 48, 424, 850, 55, 22, GOLD, True)
-    note(2, "Data and continuity", "A",
+    note(2, "Data and continuity",
          "The original cloud run retained public results but lost its private app records and split manifest. "
          "A checksum cannot reconstruct those missing rows. We therefore state a continuity gap rather than "
          f"claiming a complete continuation. The separately collected November dataset has {audit['clean_rows']:,} "
@@ -101,7 +114,7 @@ def build_slides(public_dir):
          "are now retained in the private submission. Restoring the original archive is still needed to meet "
          "the rubric's same-data condition. No instructor exception has been assumed.")
 
-    start(3, "Every choice is made inside training data", "A")
+    start(3, "Every choice is made inside training data")
     rows = [("Inputs", "Price, size, languages, release year, update recency, genre, age category"),
             ("Outer CV", "Five shared stratified folds compare all eight methods"),
             ("Inner CV", "Three folds tune forest and boosting inside each outer training fold"),
@@ -110,7 +123,7 @@ def build_slides(public_dir):
         y = 145 + index*76
         text(label, 48, y, 170, 50, 22, BLUE, True)
         text(detail, 245, y, 650, 63, 22)
-    note(3, "Fair evaluation", "A",
+    note(3, "Fair evaluation",
          "We kept the original seven raw inputs. User ratings define the label, and rating counts define "
          "eligibility, but neither enters a model. Identifiers and text are also excluded. Imputation, scaling "
          "and one-hot encoding are fitted within training folds. Every method uses the same five outer folds. "
@@ -119,7 +132,7 @@ def build_slides(public_dir):
          "primary, while AUC, balanced accuracy and class-zero recall check discrimination. The test set is "
          "used only after selection, and thresholds are unchanged.")
 
-    start(4, "One comparison includes every baseline", "A")
+    start(4, "One comparison includes every baseline")
     headers = ["Model", "CV F1 +/- SD", "Test F1", "AUC", "Bal. acc."]
     positions = [48, 325, 550, 675, 795]
     widths = [270, 210, 115, 110, 120]
@@ -134,7 +147,7 @@ def build_slides(public_dir):
             text(escape(value), x, 184+i*33, width, 32, 17, bold=name==selected)
     text("* Selected by CV. Spread is sample SD. All test rows are identical.",
          48, 461, 850, 25, 14, GRAY)
-    note(4, "Complete comparison", "A",
+    note(4, "Complete comparison",
          f"The table compares the majority baseline, three earlier classifiers, two tuned ensembles, a PCA "
          f"ablation and the MLP. {selected} has the highest mean outer CV F1 and is marked with an asterisk. "
          f"Its test F1 difference from Dummy is {delta:+.4f}. A high F1 alone is not strong evidence of useful "
@@ -142,7 +155,7 @@ def build_slides(public_dir):
          "The spread shown here is the sample standard deviation across five folds, not a confidence interval. "
          "We did not change the winner after inspecting test AUC or balanced accuracy.")
 
-    start(5, "Small, explicit searches control complexity", "B")
+    start(5, "Small, explicit searches control complexity")
     for i, name in enumerate(["Random Forest", "Gradient Boosting"]):
         x = 48 + i*465
         text(name, x, 143, 420, 42, 25, BLUE, True)
@@ -152,7 +165,7 @@ def build_slides(public_dir):
         text(settings_text, x, 205, 405, 155, 21)
         text(f"CV F1 {cv.loc[name, 'cv_f1_mean']:.3f}<br/>Test F1 {test.loc[name, 'f1']:.3f}",
              x, 374, 405, 75, 24, BLUE, True)
-    note(5, "Tuned ensembles", "B",
+    note(5, "Tuned ensembles",
          "Both ensembles use eight prespecified parameter combinations. The random forest always uses "
          "100 trees and searches depth, minimum leaf size and the number of candidate features. Larger leaves "
          "and restricted depth reduce variance. Boosting searches 75 or 150 rounds, learning rates of 0.03 or "
@@ -162,7 +175,7 @@ def build_slides(public_dir):
          f"achieved {cv.loc['Gradient Boosting', 'cv_f1_mean']:.3f}. These are estimates of the tuning "
          "procedures, not the optimistic best scores from the final search.")
 
-    start(6, "PCA describes variation, then tests its value", "B")
+    start(6, "PCA describes variation, then tests its value")
     picture("pca_variance.png", 30, 140, 535, 300)
     text(f"{pca['components_for_90_percent']} components retain 90% variance.<br/><br/>"
          f"First two: {pca['first_two_explained_variance']:.1%}.<br/><br/>"
@@ -171,7 +184,7 @@ def build_slides(public_dir):
          48, 458, 855, 28, 14, GRAY)
     loads = pca["dominant_loadings"]["PC1"][:2]
     load_names = ", ".join(v["feature"].replace("numeric__", "").replace("categorical__", "") for v in loads)
-    note(6, "Unsupervised structure", "B",
+    note(6, "Unsupervised structure",
          f"Training-only PCA requires {pca['components_for_90_percent']} components to retain 90 percent of "
          f"the transformed variance. The first two retain {pca['first_two_explained_variance']:.1%}. "
          f"The largest PC1 loadings include {load_names}. The report connects signed loadings to median "
@@ -181,14 +194,14 @@ def build_slides(public_dir):
          f"SVM training fold. The change in mean CV F1 was {pca_delta:+.4f}. PCA maximizes variance, not "
          "the ability to distinguish ratings, so compression need not improve prediction.")
 
-    start(7, "The MLP learning check reveals overfitting", "B")
+    start(7, "The MLP learning check reveals overfitting")
     picture("mlp_learning.png", 30, 140, 560, 290)
     text("32 + 16 hidden units<br/>ReLU / Adam / 120 epochs", 610, 147, 300, 88, 23, BLUE, True)
     text(f"Validation-loss minimum:<br/>epoch {mlp['best_observed_validation_epoch']}<br/><br/>"
          f"MLP CV F1: {cv.loc['MLP', 'cv_f1_mean']:.3f}<br/>"
          f"Earlier best: {escape(earlier)}<br/>{cv.loc[earlier, 'cv_f1_mean']:.3f}",
          610, 262, 300, 185, 20)
-    note(7, "Neural network learning", "B",
+    note(7, "Neural network learning",
          "Our MLP has hidden layers of 32 and 16 ReLU units, trained with Adam at learning rate 0.001 "
          "and L2 regularization 0.001. It uses a fixed 120 epochs. The learning curves come from a separate "
          "80/20 split inside the training partition, with preprocessing fitted only on the diagnostic "
@@ -199,7 +212,7 @@ def build_slides(public_dir):
          f"{cv.loc[earlier, 'cv_f1_mean']:.3f} for the CV-selected earlier reference, {earlier}. "
          "More capacity did not automatically solve the metadata limitation.")
 
-    start(8, "Error patterns matter more than a high F1", "B")
+    start(8, "Error patterns matter more than a high F1")
     text(escape(selected) + " on the holdout", 48, 145, 470, 45, 25, BLUE, True)
     labels = [("Lower-rated detected", f"{int(chosen.tn)} / {int(chosen.tn+chosen.fp)}"),
               ("False positives", str(int(chosen.fp))), ("False negatives", str(int(chosen.fn)))]
@@ -212,7 +225,7 @@ def build_slides(public_dir):
     row = paired.loc[selected] if selected in paired.index else None
     pair_text = (f"Against SVM, the selected model alone corrected {int(row.model_only_correct)} apps "
                  f"while SVM alone corrected {int(row.svm_only_correct)}. " if row is not None else "")
-    note(8, "Errors and trade-offs", "B",
+    note(8, "Errors and trade-offs",
          f"The selected model identified {int(chosen.tn)} of {int(chosen.tn+chosen.fp)} lower-rated apps. "
          f"It made {int(chosen.fp)} false positives and {int(chosen.fn)} false negatives. "
          + pair_text + "The report includes confusion matrices for every model and actual anonymized error "
@@ -221,7 +234,7 @@ def build_slides(public_dir):
          "establish why users liked or disliked an app. Different models trade positive recall against "
          "recognizing lower-rated apps.")
 
-    start(9, "Conclusions and a testable Final plan", "A")
+    start(9, "Conclusions and a testable Final plan")
     text("Metadata offers limited discrimination", 48, 143, 850, 48, 27, BLUE, True)
     text("Query sampling, imbalance, developer overlap and snapshot drift limit generalization.",
          48, 209, 850, 66, 24)
@@ -229,13 +242,13 @@ def build_slides(public_dir):
          "metadata-only and combined models using training-fold TF-IDF.", 48, 309, 850, 100, 23)
     text("Codex assistance disclosed. Real contributions and individual explanations belong to the students.",
          48, 454, 850, 30, 14, GRAY)
-    note(9, "Conclusions and Final plan", "A",
+    note(9, "Conclusions and Final plan",
          "The answer is cautious: metadata provides limited discrimination in this convenience sample, "
          "and high positive-class F1 hides important failures. For Final, the proposed source is retained "
          "app descriptions linked privately by trackId. We must confirm permitted use or obtain suitable "
          "licensed text before training. We will compare text-only, metadata-only and combined models "
          "using fold-fitted TF-IDF and training-only selection. Codex assisted implementation and writing. "
-         "Both students must disclose their real contributions, rehearse, and explain the entire project.")
+         "Every student must confirm their completed contributions, rehearse, and explain the entire project.")
     pdf.save()
     notes.append("## Evidence and citations\n\n"
                  "All numerical statements come from outputs/endterm/reports; this deck is regenerated by "

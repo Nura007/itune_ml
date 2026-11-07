@@ -49,8 +49,12 @@ Source restrictions are documented in the report; course approval is not Apple p
 .\.venv\Scripts\python.exe scripts/package_endterm.py --run-dir work/endterm-2026-11-08
 ```
 
-The ZIP includes raw data and fitted models and must remain private. Both students submit
-the same reviewed archive to Moodle, with the filename pattern
-`Endterm_Surname_Name_Group.zip` required by the rubric. Replace the generic archive name
-with real identifying details. Submit before 23:59 the day before the actual defense.
-No defense date or student identities have been supplied. Do not upload the ZIP to GitHub.
+The ZIP includes raw data and fitted models and must remain private. The owner supplied
+**Nurtilek Koblandy, Erkebulan Zhuparbay and Mansur Ryskali**, group **SE-2423**, as a
+three-person team. The rubric says both partners submit the same reviewed archive to Moodle;
+instructor acceptance of a three-person team and the corresponding submission arrangement
+remain unverified. Actual contributions must still be recorded in `docs/contributions.md`.
+
+Use the rubric's `Endterm_Surname_Name_Group.zip` filename pattern with the relevant student's
+identity. Submit before 23:59 the day before the actual defense. The defense date has not been
+supplied. Do not upload the ZIP to GitHub.

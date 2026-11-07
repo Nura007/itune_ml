@@ -11,9 +11,15 @@ It does not invent instructor feedback. Historical Midterm outputs remain unchan
 | No hyperparameter search | Fixed settings only | Inner three-fold tuning inside identical outer five-fold training CV; candidate settings and scores retained |
 | No structure analysis | Training EDA only | Train-only PCA, variance/loadings/profiles and fold-local SVM+PCA ablation |
 | Earlier notes deferred MLP to Final | No neural model | Verified Endterm rubric places MLP here; fixed network and isolated training/validation learning diagnostics |
-| Midterm presentation took nine minutes | Nine-slide Midterm deck | New timed seven-minute Endterm PDF presentation with two proposed speaker roles |
+| Midterm presentation was planned for nine minutes | Nine-slide Midterm deck | New timed seven-minute Endterm PDF presentation with three proposed speaker roles, subject to instructor acceptance of team size |
 | Notebook displayed saved aggregates only | No training on Restart and Run All | Endterm notebook executes the frozen-snapshot experiment and regenerates its report |
-| Unknown human contributions | Names and work unverified | Explicit AI disclosure, defense study guide and an unfinished human contribution record |
+| Unknown human contributions | Names and work unverified | Owner supplied three names and SE-2423; explicit AI disclosure and defense guide provided; actual contribution records remain unfinished |
 
 Before/after metrics are fair only within the new snapshot. Differences from October's
 historical scores mix data change and method change and are not claimed as model improvements.
+
+The owner identified **Nurtilek Koblandy, Erkebulan Zhuparbay and Mansur Ryskali**, group
+**SE-2423**. Instructor acceptance of a three-person team is unverified because the rubric
+describes two partners. Proposed future speaking roles are Nurtilek, slides 1-3 (130 seconds);
+Erkebulan, slides 4-6 (155 seconds); and Mansur, slides 7-9 (135 seconds). This 420-second
+plan does not establish actual contributions or completed rehearsal.

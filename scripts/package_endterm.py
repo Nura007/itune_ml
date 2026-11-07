@@ -130,6 +130,8 @@ def submission_files(root, run_dir, archive_run_prefix):
 
     for name in ("README.md", "AGENTS.md", "pyproject.toml", ".gitignore"):
         add(require_file(root / name), name)
+    if (root / ".gitattributes").is_file():
+        add(root / ".gitattributes", ".gitattributes")
     for directory in ("src", "tests", "scripts", "config", "docs"):
         for path in sorted((root / directory).rglob("*")):
             if (path.is_file() and path.suffix in CODE_EXTENSIONS
@@ -197,7 +199,7 @@ def package_endterm(run_dir, output=None, root=ROOT):
     }
     archived_sources = {name: sha256(path) for name, path in members.items()
                         if name.startswith(("src/", "tests/", "scripts/", "config/", "docs/"))
-                        or name in {"README.md", "AGENTS.md", "pyproject.toml", ".gitignore"}}
+                        or name in {"README.md", "AGENTS.md", "pyproject.toml", ".gitignore", ".gitattributes"}}
     fitting_hashes_file = run_dir / "outputs/reports/source_hashes.json"
     fitting_hashes = json.loads(fitting_hashes_file.read_text(encoding="utf-8"))
     final_source_hashes = {

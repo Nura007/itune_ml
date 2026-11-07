@@ -1,12 +1,16 @@
 """Create the reproducible Endterm notebook; run it with the project's Python kernel."""
+import json
 from pathlib import Path
 
 import nbformat
 
 
 def create(root):
+    team = json.loads((root / "config/team.json").read_text(encoding="utf-8"))
+    identity = "; ".join(student["name"] for student in team["students"])
     md, code = nbformat.v4.new_markdown_cell, nbformat.v4.new_code_cell
     cells = [md("# App Store rating classification: Endterm\n\n"
+                f"**Students:** {identity}. **Group:** {team['group']}.\n\n"
                 "This notebook reruns the real frozen API experiment. It performs no network collection. "
                 "The November snapshot is a **separate experiment**: the original Midterm raw data and "
                 "split were lost. The original-data continuity criterion remains unresolved. "
@@ -78,6 +82,15 @@ def create(root):
                 "AI use: Codex assisted with code, tests, collection execution, analysis and writing. "
                 "Students must record their real contributions and explain every part independently. "
                 "No student names, hours or instructor exceptions are inferred.")]
+    cells.append(md("## Team responsibilities\n\nThese roles were assigned at the owner's request. "
+                    "They do not certify completed contributions. Each student must review the relevant "
+                    "code and results and confirm their own completed work.\n\n"
+                    "| Student | Assigned responsibility | Slides |\n| --- | --- | --- |\n" +
+                    "\n".join(f"| {student['name']} | {student['responsibility']} | "
+                              f"{student['slides'][0]}-{student['slides'][-1]} |"
+                              for student in team["students"]) +
+                    "\n\nThe rubric describes two partners. Instructor acceptance of the "
+                    "three-person team has not been provided."))
     notebook = nbformat.v4.new_notebook(cells=cells, metadata={
         "kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"}})
     target = root / "notebooks/endterm.ipynb"

@@ -1,6 +1,8 @@
 # App Store ratings: Endterm study
 01 / Research question, evidence and continuity
 
+Students: Nurtilek Koblandy; Erkebulan Zhuparbay; Mansur Ryskali. Group: SE-2423.
+
 **CONTINUITY GAP - The original Midterm raw data and saved split are unavailable. This report is a separately collected experiment. Every model below uses the same new frozen split, but none of these comparisons establishes improvement on the original Midterm holdout. Criterion 1's same-data/split requirement remains unfulfilled. No instructor exception is claimed.**
 
 Research question: can seven metadata attributes distinguish existing US App Store apps rated at least 4.5 from lower-rated apps, among apps with at least 50 user ratings? The target describes the collection snapshot. It does not measure pre-launch success or establish causality.
@@ -234,12 +236,20 @@ Use docs/endterm_run.md for installation and execution, and docs/endterm_changes
 | 4 / Neural network | MLP train/validation learning curves, fixed settings and CV-best earlier reference. |
 | 5 / Comparison and errors | Eight-model table, confusion matrices, actual anonymized errors and paired counts. |
 | 6 / Conclusions and Final | Qualified findings, observed limits and a permission-dependent linked-text plan. |
-| 7 / Seven-minute talk | Separate slides and speaker plan supplied; both students must rehearse and present. |
-| 8 / Individual defense | AI assistance disclosed; actual names/contributions and independent understanding require students. |
+| 7 / Seven-minute talk | Three named speakers share 420 seconds. Students must rehearse and confirm team-size acceptance. |
+| 8 / Individual defense | Names and assigned roles recorded; completed contributions and independent understanding require verification. |
 
-AI disclosure: OpenAI Codex assisted with implementation, analysis, automated checks and English report/presentation drafting. The students must verify all claims, document their actual contributions in docs/contributions.md and explain any part independently. No names, hours, participation, instructor exception or defense performance have been invented.
+| Student / group SE-2423 | Assigned responsibility (completion unverified) |
+| --- | --- |
+| Nurtilek Koblandy | Data preparation, provenance, leakage checks and baseline models |
+| Erkebulan Zhuparbay | Ensemble tuning, model comparison and PCA analysis |
+| Mansur Ryskali | MLP learning checks, error analysis, conclusions and Final plan |
 
-Submission: both partners upload the same complete archive using the rubric's Endterm_Surname_Name_Group.zip naming convention by 23:59 on the day before their defense. The defense date and student naming fields must be supplied by the owners.
+AI disclosure: OpenAI Codex assisted with implementation, analysis, automated checks and English report/presentation drafting. The students must verify all claims, document their actual contributions in docs/contributions.md and explain any part independently. Names were supplied by the owner. Assigned roles are a work plan, not a claim of completed human work. No hours, instructor exception or defense performance have been invented.
+
+The owner listed three students. The rubric describes two partners; instructor acceptance of this team size has not been supplied. All three names are retained without assuming an exception.
+
+Submission: team members use the same complete archive and the rubric's Endterm_Surname_Name_Group.zip naming convention by 23:59 on the day before their defense. The defense date has not been supplied.
 
 References: Endterm Rubric.pdf, supplied by the owner and read for this implementation. Apple Search API: https://performance-partners.apple.com/search-api ; source robots: https://itunes.apple.com/robots.txt . These are source-context references, not a claim of reuse permission.
 

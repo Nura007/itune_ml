@@ -71,6 +71,10 @@ Keep the new run under ignored `work/endterm-2026-11-08/`. The private submissio
 the raw/cleaned snapshot, saved split and checksums, models, predictions, source, notebook and
 public report. Never publish this ZIP or private records to Git. Use the publication checker
 for aggregate outputs. Preserve the historical Midterm outputs in place.
-Provide an English report, seven-minute PDF slide deck, timed notes for two speakers,
-run instructions, change log, criterion evidence matrix and defense questions. Student names,
-group, actual contributions, rehearsal and individual defense remain human responsibilities.
+Provide an English report, seven-minute PDF slide deck, timed notes, run instructions,
+change log, criterion evidence matrix and defense questions. The owner supplied the three-person
+team **Nurtilek Koblandy, Erkebulan Zhuparbay and Mansur Ryskali**, group **SE-2423**.
+The rubric uses two-partner wording; instructor acceptance of three students is unverified.
+The proposed future presentation plan assigns slides 1-3 to Nurtilek (130 seconds), slides
+4-6 to Erkebulan (155 seconds), and slides 7-9 to Mansur (135 seconds), totaling 420 seconds.
+Actual contributions, completed rehearsal and individual defense remain unverified human work.

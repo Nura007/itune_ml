@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from .common import FEATURES
+from .common import FEATURES, ROOT
 
 
 def _json(path):
@@ -66,6 +66,8 @@ def _plots(comparison, learning, figures):
 
 
 def _sections(public_dir):
+    team = _json(ROOT / "config/team.json")
+    student_names = "; ".join(student["name"] for student in team["students"])
     reports = public_dir / "reports"
     comparison = pd.read_csv(reports / "comparison.csv")
     selection = _json(reports / "model_selection.json")
@@ -104,6 +106,7 @@ def _sections(public_dir):
         sections.append({"title": title, "subtitle": subtitle, "items": items})
 
     section("App Store ratings: Endterm study", "01 / Research question, evidence and continuity", [
+        ("p", f"Students: {student_names}. Group: {team['group']}."),
         ("callout", continuity_text),
         ("p", "Research question: can seven metadata attributes distinguish existing US App Store apps "
          "rated at least 4.5 from lower-rated apps, among apps with at least 50 user ratings? The target "
@@ -392,8 +395,8 @@ def _sections(public_dir):
         ["4 / Neural network", "MLP train/validation learning curves, fixed settings and CV-best earlier reference."],
         ["5 / Comparison and errors", "Eight-model table, confusion matrices, actual anonymized errors and paired counts."],
         ["6 / Conclusions and Final", "Qualified findings, observed limits and a permission-dependent linked-text plan."],
-        ["7 / Seven-minute talk", "Separate slides and speaker plan supplied; both students must rehearse and present."],
-        ["8 / Individual defense", "AI assistance disclosed; actual names/contributions and independent understanding require students."],
+        ["7 / Seven-minute talk", "Three named speakers share 420 seconds. Students must rehearse and confirm team-size acceptance."],
+        ["8 / Individual defense", "Names and assigned roles recorded; completed contributions and independent understanding require verification."],
     ]
     section("Reproduce, disclose and defend", "11 / Submission evidence, remaining duties and references", [
         ("p", "Use docs/endterm_run.md for installation and execution, and docs/endterm_changes.md for the "
@@ -402,13 +405,18 @@ def _sections(public_dir):
          "Do not force-add ignored files or publish the private package. The notebook is designed to rerun the "
          "pipeline using the saved snapshot; the source code never needs test rows during training."),
         ("table", ["Rubric criterion", "Evidence / honest status"], criterion_rows, [145, 360]),
+        ("table", ["Student / group " + team["group"], "Assigned responsibility (completion unverified)"],
+         [[student["name"], student["responsibility"]] for student in team["students"]], [145, 360]),
         ("p", "AI disclosure: OpenAI Codex assisted with implementation, analysis, automated checks and English "
          "report/presentation drafting. The students must verify all claims, document their actual contributions "
-         "in docs/contributions.md and explain any part independently. No names, hours, participation, instructor "
+         "in docs/contributions.md and explain any part independently. Names were supplied by the owner. "
+         "Assigned roles are a work plan, not a claim of completed human work. No hours, instructor "
          "exception or defense performance have been invented."),
-        ("small", "Submission: both partners upload the same complete archive using the rubric's "
+        ("small", "The owner listed three students. The rubric describes two partners; instructor acceptance "
+         "of this team size has not been supplied. All three names are retained without assuming an exception."),
+        ("small", "Submission: team members use the same complete archive and the rubric's "
          "Endterm_Surname_Name_Group.zip naming convention by 23:59 on the day before their defense. "
-         "The defense date and student naming fields must be supplied by the owners."),
+         "The defense date has not been supplied."),
         ("small", "References: Endterm Rubric.pdf, supplied by the owner and read for this implementation. "
          "Apple Search API: https://performance-partners.apple.com/search-api ; source robots: "
          "https://itunes.apple.com/robots.txt . These are source-context references, not a claim of reuse permission."),

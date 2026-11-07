@@ -24,10 +24,14 @@ trade-offs of all eight methods without reselecting on test performance.
 - [Change log](docs/endterm_changes.md), [Endterm protocol](docs/endterm_protocol.md), and [defense questions](docs/endterm_defense.md)
 
 The private ZIP is generated under ignored `outputs/private/`; it contains raw data, split IDs,
-predictions and models and must not be pushed to GitHub. Student names, group and actual
-contributions are still unprovided. The human defense and two-speaker rehearsal cannot be
-completed by the software. The current request moves the MLP to Endterm; text and the app
-remain for Final. The sections below preserve the historical Midterm record.
+predictions and models and must not be pushed to GitHub. The owner supplied **Nurtilek Koblandy,
+Erkebulan Zhuparbay and Mansur Ryskali**, group **SE-2423**, as a three-person team. The rubric
+describes two partners; instructor acceptance of three students remains unverified. Actual
+contributions are still unprovided, and the human defense and rehearsal remain student tasks.
+The proposed future speaking plan is Nurtilek on slides 1-3 (130 seconds), Erkebulan on slides
+4-6 (155 seconds), and Mansur on slides 7-9 (135 seconds), totaling seven minutes. This plan
+does not claim past contributions. The current request moves the MLP to Endterm; text and the
+app remain for Final. The sections below preserve the historical Midterm record.
 
 A binary classification project for **existing US App Store apps with at least 50 user ratings**:
 

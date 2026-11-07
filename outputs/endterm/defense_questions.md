@@ -2,8 +2,14 @@
 
 Use this guide to explain the submitted work in your own words. Do not memorize
 claims that you cannot trace to code and saved outputs. The team has seven minutes
-to present and five minutes for questions; either partner may be asked about any
+to present and five minutes for questions; any student should be ready to explain any
 part. A written answer bank cannot satisfy the individual oral-defense criterion.
+
+The owner supplied **Nurtilek Koblandy, Erkebulan Zhuparbay and Mansur Ryskali**, group
+**SE-2423**, as a three-person team. The rubric describes two partners; instructor
+acceptance of this three-person team is unverified. The owner requested the role
+division below. Responsibilities are assigned, while completed work and personal
+verification remain pending; the speaking assignments are a future plan only.
 
 The report and notebook use a separately collected Endterm snapshot. The original
 Midterm raw data and split are missing, and no instructor exception has been
@@ -162,14 +168,32 @@ explain the resulting code and conclusions. Do not attribute generated work to a
 student who did not perform or review it. AI assistance does not establish that a
 student understood the project; the defense tests that directly.
 
-## Two-partner rehearsal
+## Proposed three-person rehearsal
 
-Use the generated slide notes for the exact seven-minute allocation. A practical
-split is Speaker 1 for the question, continuity, data and tuning, and Speaker 2 for
-PCA, the MLP, comparison, limitations and Final plan. This is a proposed speaking
-assignment, not a claim about past contributions. Both should know every section.
+Use the generated slide notes for the exact seven-minute allocation. The proposed
+plan, subject to instructor acceptance of the three-person team, is:
 
-1. Each partner independently explains the seven inputs, split protections,
+| Proposed speaker | Slides | Planned time |
+| --- | --- | --- |
+| Nurtilek Koblandy | 1-3 | 130 seconds |
+| Erkebulan Zhuparbay | 4-6 | 155 seconds |
+| Mansur Ryskali | 7-9 | 135 seconds |
+| Total | 1-9 | 420 seconds |
+
+These are proposed future speaking assignments, not claims about past contributions
+or completed rehearsal. The assigned preparation responsibilities are:
+
+| Student | Assigned review and preparation | Verification status |
+| --- | --- | --- |
+| Nurtilek Koblandy | Data preparation, provenance, leakage checks and baselines; inspect `prepare.py`, `features.py`, `split.py`, `pipelines.py` and the corresponding reports | Assigned; review and completed-work evidence pending |
+| Erkebulan Zhuparbay | Ensemble tuning, combined comparison and PCA; inspect the tuning and analysis code, search results, comparison table and PCA evidence | Assigned; review and completed-work evidence pending |
+| Mansur Ryskali | MLP diagnostics, error analysis, conclusions and Final plan; inspect learning curves, matrices, cases and report conclusions | Assigned; review and completed-work evidence pending |
+
+Each student should check the assigned code and generated results, then record the
+work actually completed and its evidence in `docs/contributions.md`. All three
+students should know every section for individual defense questions.
+
+1. Each student independently explains the seven inputs, split protections,
    nested-CV diagram and one confusion matrix without reading this guide.
 2. Rehearse the complete presentation with a timer. Reserve the handoff and
    closing sentence within seven minutes; do not read code on slides.
@@ -180,25 +204,27 @@ assignment, not a claim about past contributions. Both should know every section
 5. Spend five minutes on randomly selected questions above. If unsure, identify
    the relevant evidence instead of inventing an explanation.
 
-Before private submission, both partners must enter their actual names, group and
-contributions in `docs/contributions.md`, confirm the final archive contents, and
-upload the same complete archive using the required surname/name/group filename.
+Before private submission, all three named students must enter their actual
+contributions in `docs/contributions.md` and confirm the final archive contents.
+Confirm instructor acceptance of the team size and how the rubric's two-partner
+submission instructions apply, then use the required surname/name/group filename.
 The defense date and completed rehearsal have not been supplied or verified.
 
 ## Contribution and AI disclosure form
 
-Complete this with truthful statements; the blank entries are not submitted facts.
+Names and group were supplied by the owner. Complete the contribution entries with
+truthful statements; the unprovided work must not be presented as completed.
 
 | Entry | Actual information to provide |
 | --- | --- |
-| Student 1 name and group | Not yet provided by the students |
-| Student 1 contribution | Specific work performed, files reviewed and decisions explained |
-| Student 2 name and group | Not yet provided by the students |
-| Student 2 contribution | Specific work performed, files reviewed and decisions explained |
+| Nurtilek Koblandy, SE-2423 | Data/provenance/leakage/baseline responsibilities assigned; completed work and evidence pending |
+| Erkebulan Zhuparbay, SE-2423 | Ensemble/comparison/PCA responsibilities assigned; completed work and evidence pending |
+| Mansur Ryskali, SE-2423 | MLP/errors/conclusions/Final-plan responsibilities assigned; completed work and evidence pending |
+| Three-person team acceptance | Unverified; rubric describes two partners |
 | AI assistance | Codex: implementation assistance, tests, analysis code and English deliverables |
 | Human verification | Record which outputs and methods each student actually checked |
 
 Keep the private snapshot under `work/endterm-2026-11-08/` in the working checkout.
-The private submission archive stores it under `private_run/`. Training can be
-rerun with the corresponding directory argument; it must not recollect API data.
+The private submission archive preserves that same `work/endterm-2026-11-08/`
+path. Training can be rerun with that directory argument; it must not recollect API data.
 Use the repository run instructions, and never publish the private archive.

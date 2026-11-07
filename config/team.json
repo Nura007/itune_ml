@@ -1,0 +1,30 @@
+{
+  "group": "SE-2423",
+  "repository": "https://github.com/Nura007/itune_ml",
+  "identity_source": "Names and group supplied by the repository owner in chat",
+  "role_status": "Assigned responsibilities requested by the owner; completion is not yet verified",
+  "three_person_team_approval": "Not provided; the rubric describes two partners",
+  "students": [
+    {
+      "name": "Nurtilek Koblandy",
+      "responsibility": "Data preparation, provenance, leakage checks and baseline models",
+      "slides": [1, 2, 3],
+      "speaking_seconds": 130,
+      "completion_status": "Pending student review and confirmation"
+    },
+    {
+      "name": "Erkebulan Zhuparbay",
+      "responsibility": "Ensemble tuning, model comparison and PCA analysis",
+      "slides": [4, 5, 6],
+      "speaking_seconds": 155,
+      "completion_status": "Pending student review and confirmation"
+    },
+    {
+      "name": "Mansur Ryskali",
+      "responsibility": "MLP learning checks, error analysis, conclusions and Final plan",
+      "slides": [7, 8, 9],
+      "speaking_seconds": 135,
+      "completion_status": "Pending student review and confirmation"
+    }
+  ]
+}
