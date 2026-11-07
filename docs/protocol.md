@@ -1,5 +1,11 @@
 # Prespecified Midterm protocol
 
+The Midterm specification below remains the historical record. The owner's November 8, 2026
+request to implement the directly inspected Endterm rubric authorizes an MLP at Endterm.
+The Endterm extension is specified in `docs/endterm_protocol.md` and `config/settings.json`.
+Text models and the application remain for Final. No claim of original-data continuity is made
+unless the original private snapshot and saved manifest can actually be restored.
+
 The US storefront and USD keep price units and rating context consistent. Keyword search is a convenience sample.
 The 132 interleaved terms are configuration, not a claim that a supplied starter archive was inspected.
 

@@ -1,0 +1,75 @@
+{
+  "method": "PCA; full SVD; training data only",
+  "train_n": 1743,
+  "raw_input_count": 7,
+  "transformed_feature_count": 33,
+  "components_for_90_percent": 9,
+  "first_two_explained_variance": 0.36588156866114685,
+  "pc1_explained_variance": 0.19494041945399118,
+  "pc2_explained_variance": 0.17094114920715567,
+  "dominant_loadings": {
+    "PC1": [
+      {
+        "feature": "numeric__size_mb",
+        "loading": 0.6060824271560333
+      },
+      {
+        "feature": "numeric__update_recency_days",
+        "loading": -0.543087059767255
+      },
+      {
+        "feature": "numeric__release_year",
+        "loading": 0.4654032198964741
+      },
+      {
+        "feature": "numeric__language_count",
+        "loading": 0.2904655574861357
+      },
+      {
+        "feature": "categorical__primary_genre_Games",
+        "loading": 0.11911797781414163
+      }
+    ],
+    "PC2": [
+      {
+        "feature": "numeric__language_count",
+        "loading": 0.6239431064867202
+      },
+      {
+        "feature": "numeric__price_usd",
+        "loading": 0.5967474165223969
+      },
+      {
+        "feature": "numeric__release_year",
+        "loading": -0.4940010301538703
+      },
+      {
+        "feature": "numeric__size_mb",
+        "loading": 0.07133475650178364
+      },
+      {
+        "feature": "categorical__primary_genre_Games",
+        "loading": -0.05117453759983932
+      }
+    ]
+  },
+  "examples": [
+    {
+      "example": "Lower PC1 example",
+      "description": "size in training middle half; update recency in training middle half"
+    },
+    {
+      "example": "Upper PC1 example",
+      "description": "size in training upper quartile; update recency in training middle half"
+    }
+  ],
+  "scaling": "Training-median imputation and unit-variance numeric scaling; one-hot categories remain 0/1.",
+  "interpretation": "PC1 strata summarize training-feature variation. Inspect signed loadings and median profiles; component signs are arbitrary. Examples describe actual training objects only in coarse quartiles.",
+  "model_connection": "Compare SVM + PCA with SVM using identical training CV folds and the same holdout. The prediction pipeline fits its own 90%-variance PCA within each training fold; this exploratory full-training PCA is never reused inside cross-validation.",
+  "limitations": [
+    "PCA maximizes variance, not rating discrimination; low-variance signals can be lost.",
+    "One-hot prevalence and numeric outliers influence component directions.",
+    "The two-dimensional density map is not evidence that natural app groups exist.",
+    "Explained variance is a reconstruction diagnostic, not a clustering-stability result."
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "Dummy": {
+    "labels": [
+      0,
+      1
+    ],
+    "rows": "true",
+    "columns": "predicted",
+    "matrix": [
+      [
+        0,
+        88
+      ],
+      [
+        0,
+        348
+      ]
+    ]
+  },
+  "Decision Tree": {
+    "labels": [
+      0,
+      1
+    ],
+    "rows": "true",
+    "columns": "predicted",
+    "matrix": [
+      [
+        18,
+        70
+      ],
+      [
+        23,
+        325
+      ]
+    ]
+  },
+  "KNN": {
+    "labels": [
+      0,
+      1
+    ],
+    "rows": "true",
+    "columns": "predicted",
+    "matrix": [
+      [
+        12,
+        76
+      ],
+      [
+        23,
+        325
+      ]
+    ]
+  },
+  "SVM": {
+    "labels": [
+      0,
+      1
+    ],
+    "rows": "true",
+    "columns": "predicted",
+    "matrix": [
+      [
+        7,
+        81
+      ],
+      [
+        6,
+        342
+      ]
+    ]
+  },
+  "Random Forest": {
+    "labels": [
+      0,
+      1
+    ],
+    "rows": "true",
+    "columns": "predicted",
+    "matrix": [
+      [
+        16,
+        72
+      ],
+      [
+        13,
+        335
+      ]
+    ]
+  },
+  "Gradient Boosting": {
+    "labels": [
+      0,
+      1
+    ],
+    "rows": "true",
+    "columns": "predicted",
+    "matrix": [
+      [
+        4,
+        84
+      ],
+      [
+        1,
+        347
+      ]
+    ]
+  },
+  "SVM + PCA": {
+    "labels": [
+      0,
+      1
+    ],
+    "rows": "true",
+    "columns": "predicted",
+    "matrix": [
+      [
+        6,
+        82
+      ],
+      [
+        4,
+        344
+      ]
+    ]
+  },
+  "MLP": {
+    "labels": [
+      0,
+      1
+    ],
+    "rows": "true",
+    "columns": "predicted",
+    "matrix": [
+      [
+        27,
+        61
+      ],
+      [
+        37,
+        311
+      ]
+    ]
+  }
+}

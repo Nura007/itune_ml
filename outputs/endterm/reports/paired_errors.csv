@@ -1,0 +1,9 @@
+model,reference,test_n,both_correct,both_wrong,model_only_correct,svm_only_correct,prediction_disagreements,interpretation
+Dummy,SVM,436,342,81,6,7,13,Paired descriptive counts; not a significance test.
+Decision Tree,SVM,436,326,70,17,23,40,Paired descriptive counts; not a significance test.
+KNN,SVM,436,330,80,7,19,26,Paired descriptive counts; not a significance test.
+SVM,SVM,436,349,87,0,0,0,Paired descriptive counts; not a significance test.
+Random Forest,SVM,436,339,75,12,10,22,Paired descriptive counts; not a significance test.
+Gradient Boosting,SVM,436,346,82,5,3,8,Paired descriptive counts; not a significance test.
+SVM + PCA,SVM,436,347,84,3,2,5,Paired descriptive counts; not a significance test.
+MLP,SVM,436,316,65,22,33,55,Paired descriptive counts; not a significance test.

@@ -1,0 +1,128 @@
+{
+  "selected_model": "SVM",
+  "best_earlier_model": "SVM",
+  "best_repeated_midterm_model": "SVM",
+  "original_midterm_selected_model": "SVM",
+  "criterion": "maximum mean outer CV F1 for class 1",
+  "tie_break": "model name ascending",
+  "cv_std": "sample standard deviation, ddof=1",
+  "outer_folds": 5,
+  "inner_folds": 3,
+  "hyperparameter_tuning": "nested training CV for ensembles; full-training CV for final refit",
+  "inner_tie_break": "first candidate in deterministic sklearn ParameterGrid order",
+  "search_spaces": {
+    "Random Forest": {
+      "model__max_depth": [
+        null,
+        12
+      ],
+      "model__min_samples_leaf": [
+        2,
+        10
+      ],
+      "model__max_features": [
+        "sqrt",
+        0.8
+      ]
+    },
+    "Gradient Boosting": {
+      "model__n_estimators": [
+        75,
+        150
+      ],
+      "model__learning_rate": [
+        0.03,
+        0.1
+      ],
+      "model__max_depth": [
+        1,
+        2
+      ]
+    }
+  },
+  "selected_parameters": {
+    "Dummy": {
+      "fixed_estimator": "DummyClassifier(strategy='most_frequent')"
+    },
+    "Decision Tree": {
+      "fixed_estimator": "DecisionTreeClassifier(max_depth=8, min_samples_leaf=10, random_state=42)"
+    },
+    "KNN": {
+      "fixed_estimator": "KNeighborsClassifier(n_neighbors=15, weights='distance')"
+    },
+    "SVM": {
+      "fixed_estimator": "SVC(random_state=42)"
+    },
+    "Random Forest": {
+      "model__max_depth": null,
+      "model__max_features": "sqrt",
+      "model__min_samples_leaf": 2
+    },
+    "Gradient Boosting": {
+      "model__learning_rate": 0.03,
+      "model__max_depth": 2,
+      "model__n_estimators": 75
+    },
+    "SVM + PCA": {
+      "fixed_estimator": "SVC(random_state=42)",
+      "pca_variance_target": 0.9,
+      "fitted_pca_components": 9
+    },
+    "MLP": {
+      "fixed_estimator": "MLPClassifier(alpha=0.001, batch_size=64, hidden_layer_sizes=(32, 16),\n              max_iter=120, n_iter_no_change=121, random_state=42, tol=0.0)"
+    }
+  },
+  "input_features": [
+    "price_usd",
+    "size_mb",
+    "language_count",
+    "release_year",
+    "update_recency_days",
+    "primary_genre",
+    "content_advisory_rating"
+  ],
+  "test_used_for_selection": false,
+  "threshold_tuning": false,
+  "mlp_fixed_epochs": 120,
+  "convergence_warnings": {
+    "Dummy": [],
+    "Decision Tree": [],
+    "KNN": [],
+    "SVM": [],
+    "Random Forest": [],
+    "Gradient Boosting": [],
+    "SVM + PCA": [],
+    "MLP": [
+      {
+        "scope": "outer_fold_1",
+        "message": "Stochastic Optimizer: Maximum iterations (120) reached and the optimization hasn't converged yet."
+      },
+      {
+        "scope": "outer_fold_2",
+        "message": "Stochastic Optimizer: Maximum iterations (120) reached and the optimization hasn't converged yet."
+      },
+      {
+        "scope": "outer_fold_3",
+        "message": "Stochastic Optimizer: Maximum iterations (120) reached and the optimization hasn't converged yet."
+      },
+      {
+        "scope": "outer_fold_4",
+        "message": "Stochastic Optimizer: Maximum iterations (120) reached and the optimization hasn't converged yet."
+      },
+      {
+        "scope": "outer_fold_5",
+        "message": "Stochastic Optimizer: Maximum iterations (120) reached and the optimization hasn't converged yet."
+      },
+      {
+        "scope": "full_training_refit",
+        "message": "Stochastic Optimizer: Maximum iterations (120) reached and the optimization hasn't converged yet."
+      }
+    ]
+  },
+  "limitations": [
+    "Winning outer-CV mean can be optimistic after model-family selection.",
+    "Nested ensemble CV and fixed-model CV share exactly the same outer folds.",
+    "Final refit search scores are not independent evaluation scores.",
+    "MLP fixed-budget termination is not proof of convergence."
+  ]
+}

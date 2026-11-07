@@ -1,0 +1,5 @@
+pc1_stratum,n,median_price_usd,median_size_mb,median_language_count,median_release_year,median_update_recency_days,most_common_genre
+1,436,0.0,105.749504,2.0,2013.0,136.0,Weather
+2,436,0.0,164.33152,2.0,2016.0,12.0,Health & Fitness
+3,435,0.0,206.621696,7.0,2019.0,12.0,Games
+4,436,0.0,382.58687999999995,13.0,2022.0,9.0,Games

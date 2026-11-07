@@ -1,0 +1,30 @@
+{
+  "raw_rows": 2944,
+  "excluded": {
+    "invalid_track_id": 0,
+    "invalid_collection_time": 0,
+    "not_software": 0,
+    "duplicate_track_id": 293,
+    "non_usd_or_missing_currency": 0,
+    "invalid_or_below_50_ratings": 472,
+    "invalid_or_missing_rating": 0
+  },
+  "clean_rows": 2179,
+  "class_counts": {
+    "0": 440,
+    "1": 1739
+  },
+  "missing_features": {
+    "price_usd": 0,
+    "size_mb": 0,
+    "language_count": 0,
+    "release_year": 0,
+    "update_recency_days": 0,
+    "primary_genre": 0,
+    "content_advisory_rating": 0
+  },
+  "missing_description": 0,
+  "collection_start": "2026-11-07T21:10:17.817609+00:00",
+  "collection_end": "2026-11-07T21:11:17.899026+00:00",
+  "minimum_met": true
+}

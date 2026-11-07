@@ -1,0 +1,94 @@
+{
+  "experiment_id": "endterm-2026-11-08",
+  "data_kind": "real_api",
+  "created_at_utc": "2026-11-07T21:14:10.749098+00:00",
+  "python_version": "3.12.10",
+  "sklearn_version": "1.6.1",
+  "dataset_sha256": "fe329f600227b87391b4c48d2d7c4db3dd9c10297503402ff151e36687348676",
+  "test_size": 0.2,
+  "random_state": 42,
+  "stratify": "high_rated",
+  "manifest_sha256": "f5137391d64b18663da013d4ad6b8fad25698c18db09f214e54fd6652eaf67e8",
+  "train_n": 1743,
+  "test_n": 436,
+  "train_class_counts": {
+    "1": 1391,
+    "0": 352
+  },
+  "test_class_counts": {
+    "1": 348,
+    "0": 88
+  },
+  "source_response_checksums": {
+    "043e578140306cad7f78.response.json": "cc4388fc102116e481c9418122b2107d0cb37d10a5b39e5f2ee6099871599d6b",
+    "0c5aefcdd57f0f2fdda1.response.json": "9ddf6c445b38f6c545549198a51fa9c4ba1a106d48bb7377fb392ea0048837ce",
+    "0d29f6974078f9c1652a.response.json": "47bb513b93064d21fcc835eff7d12b0a015fe1d51f8cdd15ea4a050f448de8a1",
+    "11ce423ff3f8578513dc.response.json": "c707abde962a8d3d8a78e5f2b4fba804651fd914eff4816c2070964410cd79b3",
+    "148c4c9893cee3af3e9e.response.json": "aac9f379f45f6441b6292ac1d6756823399115e0075d87d007a9025bea0aa1be",
+    "1907a72af09e922cc6cc.response.json": "ab6dfd9149d38da0ba04af523c0b8926220f193189d893f5b20ab7af09ec4eea",
+    "23aeb4966884a211d932.response.json": "d2ee08346d64fe91d7a4d5b90d341efd35a3dbc3215f33107b7e12f49deef1b0",
+    "4befde97afdbc38b791b.response.json": "73197b8b19dfa63ef77a6b79f948e870e491b325ce964e6ca18c852521f42881",
+    "4c76f397acb134261aba.response.json": "ca214c6e0957e7d73fe74a39d75bf670312b7f8d8c590a2f3e6ae0a69aca327c",
+    "4e98ff21c501fd879497.response.json": "a9b86c849028fea1b2becbe143acd8dc2a08035c3470af34a90cbddb6e08abb8",
+    "4f62dba1c9256c369a7d.response.json": "a18d31e46d670d5a4b9c99aa2ae25026d85d250850ea9fb60a3b071a34da18a9",
+    "51b11bdb1956ef99617c.response.json": "8152b58a303cdec7d0a6655f059af805a2e6c3dadc149fe7ed2ce0f7dc4ebb3e",
+    "5b641f08f2d4cf023c61.response.json": "44ad90b7bb373f708154cc0637279ff2f9c9f8932de3155fa7669274232f3e34",
+    "7c1aef4b724d90286d2a.response.json": "fc02f994230889ea405c3dc7576ef8167fc34f9e5cd15817a5524f220e736637",
+    "c851a28dc9a66d6d4e51.response.json": "ed6defdd3c73644dede985d71fb6c063199ad14c4a8340fe02b9f57aa0e282b5",
+    "cd0a005a4391e10f9980.response.json": "24ae533d6729be48af271296c28baf9c1bce0fc350aac6b7d0168a2c0b176e3b",
+    "cfae66513eea315c42ea.response.json": "af8137e65708bd5bba159711cc687720d80d0211a3bfae000951569a50e24b45",
+    "d9928afc70bf3bfe7ecd.response.json": "264794c465548151bef5c3154863158d519107f1389b3264a3a4de997cecf5ed"
+  },
+  "config": {
+    "target_threshold": 4.5,
+    "min_rating_count": 50,
+    "min_samples": 1500,
+    "target_samples": 2000,
+    "test_size": 0.2,
+    "random_state": 42,
+    "cv_folds": 5,
+    "country": "us",
+    "currency": "USD",
+    "request_limit": 200,
+    "request_pause_seconds": 3.2,
+    "timeout_seconds": 40,
+    "retries": 4,
+    "numeric_features": [
+      "price_usd",
+      "size_mb",
+      "language_count",
+      "release_year",
+      "update_recency_days"
+    ],
+    "categorical_features": [
+      "primary_genre",
+      "content_advisory_rating"
+    ],
+    "endterm": {
+      "experiment_id": "endterm-2026-11-08",
+      "stage": "endterm",
+      "primary_metric": "f1_class_1",
+      "outer_folds": 5,
+      "inner_folds": 3,
+      "pca_retained_variance": 0.9,
+      "mlp_hidden_layers": [
+        32,
+        16
+      ],
+      "mlp_epochs": 120,
+      "mlp_alpha": 0.001,
+      "mlp_learning_rate": 0.001,
+      "original_dataset_sha256": "5c4169bb4bf7cf5f8ae8c14110dc8aef6948a645657b869ff77c21c4631bc8fd",
+      "original_split_available": false,
+      "text_and_app_stage": "final"
+    },
+    "pilot_terms": [
+      "fitness",
+      "education",
+      "puzzle game"
+    ]
+  },
+  "selected_model": "SVM",
+  "continuity_status": "separate_experiment",
+  "test_used_for_selection": false
+}

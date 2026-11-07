@@ -1,0 +1,28 @@
+{
+  "architecture": [
+    32,
+    16
+  ],
+  "activation": "relu",
+  "optimizer": "adam",
+  "alpha": 0.001,
+  "learning_rate_init": 0.001,
+  "batch_size": 64,
+  "fixed_epochs": 120,
+  "early_stopping": false,
+  "diagnostic_training_n": 1394,
+  "diagnostic_validation_n": 349,
+  "validation_source": "stratified 20% of the saved training partition",
+  "preprocessing_fit_scope": "diagnostic training subset only",
+  "used_to_change_settings": false,
+  "test_used": false,
+  "best_observed_validation_epoch": 35,
+  "best_observed_validation_log_loss": 0.4215418980058129,
+  "final_training_log_loss": 0.29457376967038074,
+  "final_validation_log_loss": 0.4882021894846762,
+  "final_validation_f1": 0.8758620689655172,
+  "validation_loss_change_last_window": 0.011021489766739834,
+  "window_epochs": 10,
+  "validation_loss_above_observed_minimum": 0.06666029147886332,
+  "interpretation_rule": "Lower training loss with increasing validation loss suggests overfitting. A flat validation loss suggests a plateau; fixed-budget termination alone is not convergence. The observed best epoch is descriptive and is not selected for final fitting."
+}

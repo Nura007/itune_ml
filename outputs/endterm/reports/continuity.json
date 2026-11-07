@@ -1,0 +1,8 @@
+{
+  "original_dataset_sha256": "5c4169bb4bf7cf5f8ae8c14110dc8aef6948a645657b869ff77c21c4631bc8fd",
+  "current_dataset_sha256": "fe329f600227b87391b4c48d2d7c4db3dd9c10297503402ff151e36687348676",
+  "same_dataset": false,
+  "same_original_split_verified": false,
+  "status": "separate_experiment",
+  "limitation": "The original private split manifest is unavailable. A new split cannot establish continuity, even if its seed is the same. No instructor exception is claimed."
+}

@@ -23,6 +23,21 @@
     "primary_genre",
     "content_advisory_rating"
   ],
+  "endterm": {
+    "experiment_id": "endterm-2026-11-08",
+    "stage": "endterm",
+    "primary_metric": "f1_class_1",
+    "outer_folds": 5,
+    "inner_folds": 3,
+    "pca_retained_variance": 0.9,
+    "mlp_hidden_layers": [32, 16],
+    "mlp_epochs": 120,
+    "mlp_alpha": 0.001,
+    "mlp_learning_rate": 0.001,
+    "original_dataset_sha256": "5c4169bb4bf7cf5f8ae8c14110dc8aef6948a645657b869ff77c21c4631bc8fd",
+    "original_split_available": false,
+    "text_and_app_stage": "final"
+  },
   "pilot_terms": [
     "fitness",
     "education",
